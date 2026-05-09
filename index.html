@@ -1573,9 +1573,6 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     updateCarousel();
   });
 
-  // Auto-advance every 5 s
-  setInterval(function() { window.moveCarousel(1); }, 5000);
-
   // Init + touch / swipe support
   document.addEventListener('DOMContentLoaded', function() {
     buildDots();
