@@ -1039,6 +1039,137 @@
     }
   }
 
+  /* GALERIE / CAROUSEL */
+  .gallery-section {
+    background: white;
+    border-radius: 40px;
+  }
+
+  .carousel-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: var(--card-shadow);
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(.4,0,.2,1);
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    aspect-ratio: 4/3;
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .carousel-slide img:hover {
+    transform: scale(1.03);
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,253,244,0.88);
+    border: none;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    transition: background 0.2s, transform 0.2s;
+    z-index: 10;
+    color: var(--dark);
+  }
+
+  .carousel-btn:hover {
+    background: var(--yellow);
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .carousel-btn.prev { left: 12px; }
+  .carousel-btn.next { right: 12px; }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.2rem;
+  }
+
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    padding: 0;
+  }
+
+  .carousel-dot.active {
+    background: var(--blue);
+    transform: scale(1.25);
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+
+  .lightbox.open {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    object-fit: contain;
+    cursor: default;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+
+  .lightbox-close:hover { opacity: 1; }
+
   /* WCAG 2.4.7 / 2.4.11: Visible focus indicators */
   .btn:focus-visible,
   .nav-links a:focus-visible,
@@ -1074,6 +1205,7 @@
     <li><a href="#o-nas">O nás</a></li>
     <li><a href="#tym">Náš tým</a></li>
     <li><a href="#cena">Cena</a></li>
+    <li><a href="#galerie">Galerie</a></li>
     <li><a href="#kontakt" class="nav-cta">Napište nám</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
@@ -1086,6 +1218,7 @@
   <a href="#o-nas" onclick="toggleMenu()">O nás</a>
   <a href="#tym" onclick="toggleMenu()">Náš tým</a>
   <a href="#cena" onclick="toggleMenu()">Cena</a>
+  <a href="#galerie" onclick="toggleMenu()">Galerie</a>
   <a href="#kontakt" onclick="toggleMenu()">Napište nám</a>
 </div>
 
@@ -1271,6 +1404,51 @@
   </div>
 </section>
 
+<!-- GALERIE -->
+<section id="galerie" style="padding: 80px 2rem;">
+  <div class="container gallery-section" style="padding: 3rem 2rem;">
+    <span class="section-label">Galerie</span>
+    <h2 class="section-title">Naše prostory</h2>
+    <p class="section-sub">Podívejte se, jak to u nás vypadá.</p>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide">
+          <img src="fotky_webp/IMG_0500.webp" alt="Foto 1 – prostory Dubinky" loading="lazy" onclick="openLightbox(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="fotky_webp/IMG_0501.webp" alt="Foto 2 – prostory Dubinky" loading="lazy" onclick="openLightbox(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="fotky_webp/IMG_0503.webp" alt="Foto 3 – prostory Dubinky" loading="lazy" onclick="openLightbox(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="fotky_webp/IMG_0505.webp" alt="Foto 4 – prostory Dubinky" loading="lazy" onclick="openLightbox(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="fotky_webp/IMG_0514.webp" alt="Foto 5 – prostory Dubinky" loading="lazy" onclick="openLightbox(this.src)">
+        </div>
+      </div>
+      <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Předchozí fotografie">&#8249;</button>
+      <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Následující fotografie">&#8250;</button>
+    </div>
+
+    <div class="carousel-dots" id="carouselDots">
+      <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Fotografie 1"></button>
+      <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Fotografie 2"></button>
+      <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Fotografie 3"></button>
+      <button class="carousel-dot" onclick="goToSlide(3)" aria-label="Fotografie 4"></button>
+      <button class="carousel-dot" onclick="goToSlide(4)" aria-label="Fotografie 5"></button>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zavřít">&times;</button>
+  <img id="lightboxImg" src="" alt="Zvětšená fotografie" onclick="event.stopPropagation()">
+</div>
+
 <!-- KONTAKT -->
 <section id="kontakt" style="padding: 80px 2rem;">
   <div class="container">
@@ -1338,6 +1516,63 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Carousel
+(function() {
+  var current = 0;
+  var total = 5;
+
+  function updateCarousel() {
+    var track = document.getElementById('carouselTrack');
+    if (track) track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    var dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  window.moveCarousel = function(dir) {
+    current = (current + dir + total) % total;
+    updateCarousel();
+  };
+
+  window.goToSlide = function(idx) {
+    current = idx;
+    updateCarousel();
+  };
+
+  // Auto-advance every 5 s
+  setInterval(function() { window.moveCarousel(1); }, 5000);
+
+  // Touch / swipe support
+  var startX = 0;
+  var wrap = null;
+  document.addEventListener('DOMContentLoaded', function() {
+    wrap = document.querySelector('.carousel-wrap');
+    if (!wrap) return;
+    wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) window.moveCarousel(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  });
+})();
+
+// Lightbox
+window.openLightbox = function(src) {
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightboxImg');
+  if (lb && img) { img.src = src; lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+};
+
+window.closeLightbox = function() {
+  var lb = document.getElementById('lightbox');
+  if (lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+};
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') window.closeLightbox();
+});
 
 // Mobile menu
 function toggleMenu() {
