@@ -934,6 +934,33 @@
     margin: 1rem auto 0;
   }
 
+  /* LOGA PODPOROVATELŮ */
+  .partners-logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .partner-logo {
+    height: 60px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    flex: 1;
+  }
+  .partners-logos .partner-logo:first-child { margin-right: auto; }
+  .partners-logos .partner-logo:nth-child(2) { margin: 0 auto; }
+  .partners-logos .partner-logo:last-child { margin-left: auto; }
+  @media (max-width: 600px) {
+    .partners-logos {
+      gap: 0.75rem;
+    }
+    .partner-logo {
+      height: 40px;
+      max-width: 110px;
+    }
+  }
+
   footer p {
     color: rgba(255,255,255,0.8);
     font-size: 0.9rem;
@@ -1395,7 +1422,7 @@
       </div>
       <div class="team-card fade-in">
         <div class="team-avatar"><img src="dubinka ikony/kytka3.png" alt="Ikona květiny"></div>
-        <h3>Šimečková Alena</h3>
+        <h3>Šimečková Michaela</h3>
         <span class="role">Pečující osoba</span>
         <p style="font-size:0.95rem;color:var(--text-light);">Vzdělávací aktivity, pohybový rozvoj a individuální přístup.</p>
       </div>
@@ -1495,6 +1522,17 @@
         <p style="margin-top:1.2rem;"><strong>Kontakt na obec Dubno</strong><br>Tel.: +420 318 627 136<br>Email: <a href="mailto:obecdubno@obecdubno.cz">obecdubno@obecdubno.cz</a><br>Web: <a href="https://www.obecdubno.cz/" target="_blank" rel="noopener">www.obecdubno.cz</a></p>
         <img class="municipality-logo" src="logo_obec_dubno.png" alt="Logo obce Dubno">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGA PODPOROVATELŮ -->
+<section id="podporovatele" style="padding: 20px 1.5rem; background: #f9f7f4;">
+  <div class="container">
+    <div class="partners-logos">
+      <img src="loga/1eu.webp" alt="Evropská unie" class="partner-logo">
+      <img src="loga/2narodni_plan.webp" alt="Národní plán obnovy" class="partner-logo">
+      <img src="loga/3mpsv.webp" alt="MPSV" class="partner-logo">
     </div>
   </div>
 </section>
